@@ -1,5 +1,8 @@
 ### Python REST API (FastAPI, SQLAlchemy, PostgreSQL)
- 
+
+Restore postgresql database from <strong>/database</strong> folder
+
+
 Install dependencies:
 </br>
 `pip install -r requirements.txt`
