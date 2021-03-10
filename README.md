@@ -4,12 +4,16 @@ Install dependencies:
 
 `pip install -r requirements.txt`
 
+
 Setting database connection on main.py
+```python
 API_HOST = 'localhost'
 API_DATABASE = 'wo'
 API_DBUSER = 'postgres'
 API_DBPASSWORD = 'awizindo'
 API_DBPORT = '5432'
+```
+
 
 Running:
 `uvicorn main:app --reload`
