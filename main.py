@@ -8,14 +8,23 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import os
 import urllib
+from datetime import datetime
 
 
-# ======= Connection
-host_server = os.environ.get('host_server', 'localhost')
-db_server_port = urllib.parse.quote_plus(str(os.environ.get('db_server_port', '5432')))
-database_name = os.environ.get('database_name', 'wo')
-db_username = urllib.parse.quote_plus(str(os.environ.get('db_username', 'postgres')))
-db_password = urllib.parse.quote_plus(str(os.environ.get('db_password', 'awizindo')))
+
+# ======= Connection Setting
+API_HOST = 'localhost'
+API_DATABASE = 'wo'
+API_DBUSER = 'postgres'
+API_DBPASSWORD = 'awizindo'
+API_DBPORT = '5432'
+
+# ======= Create Connection
+host_server = os.environ.get('host_server', API_HOST)
+db_server_port = urllib.parse.quote_plus(str(os.environ.get('db_server_port', API_DBPORT)))
+database_name = os.environ.get('database_name', API_DATABASE)
+db_username = urllib.parse.quote_plus(str(os.environ.get('db_username', API_DBUSER)))
+db_password = urllib.parse.quote_plus(str(os.environ.get('db_password', API_DBPASSWORD)))
 ssl_mode = urllib.parse.quote_plus(str(os.environ.get('ssl_mode','prefer')))
 DATABASE_URL = 'postgresql://{}:{}@{}:{}/{}?sslmode={}'.format(db_username,db_password, host_server, db_server_port, database_name, ssl_mode)
 
@@ -35,22 +44,138 @@ plu = sqlalchemy.Table(
     metadata,
     sqlalchemy.Column("pluid", sqlalchemy.Integer, primary_key=True),
     sqlalchemy.Column("pluname", sqlalchemy.String), 
+    sqlalchemy.Column("pluimage", sqlalchemy.String), 
     sqlalchemy.Column("plutext", sqlalchemy.String),
+    sqlalchemy.Column("pluinputdate", sqlalchemy.DateTime),
+    sqlalchemy.Column("plushow", sqlalchemy.Boolean),
+    sqlalchemy.Column("plunumber", sqlalchemy.String),
+    sqlalchemy.Column("plutype", sqlalchemy.Integer),
+    sqlalchemy.Column("departmentid", sqlalchemy.Integer),
+    sqlalchemy.Column("plugroup", sqlalchemy.Integer),
+    sqlalchemy.Column("plulevel", sqlalchemy.Integer),
+    sqlalchemy.Column("pluremarks", sqlalchemy.String),
+    sqlalchemy.Column("pluorder", sqlalchemy.Integer),
+    sqlalchemy.Column("pluflag", sqlalchemy.Integer),
+    sqlalchemy.Column("plumod", sqlalchemy.Integer),
+    sqlalchemy.Column("modlink", sqlalchemy.Integer),
+    sqlalchemy.Column("pluactivestart", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluactiveend", sqlalchemy.DateTime),
+    sqlalchemy.Column("plunamelang1", sqlalchemy.String),
+    sqlalchemy.Column("plukind", sqlalchemy.Integer),
+    sqlalchemy.Column("plumaxorder", sqlalchemy.Integer),
+    sqlalchemy.Column("islinkmenu", sqlalchemy.Boolean),
+    sqlalchemy.Column("plutypeemenu", sqlalchemy.Integer),
+    sqlalchemy.Column("pluopenday", sqlalchemy.Boolean),
+    sqlalchemy.Column("pluopensundaystart", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopensundaystop", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopenmondaystart", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopenmondaystop", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopentuesdaystart", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopentuesdaystop", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopenwednesdaystart", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopenwednesdaystop", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopenthursdaystart", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopenthursdaystop", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopenfridaystart", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopenfridaystop", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopensaturdaystart", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopensaturdaystop", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopenholidaystart", sqlalchemy.DateTime),
+    sqlalchemy.Column("pluopenholidaystop", sqlalchemy.DateTime),
+    sqlalchemy.Column("tenantid", sqlalchemy.Integer),
+
+
 )
 
 # ####### Data Model
 # ======= PLU
 class PLUIn(BaseModel): 
-    pluname: str 
-    plutext: str
+    pluname: str  
+    pluimage: str
+    plutext: str 
+    pluinputdate: datetime
+    plushow: bool
+    plunumber: str
+    plutype: int
+    departmentid: int
+    plugroup: int
+    plulevel: int
+    pluremarks: str
+    pluorder: int
+    pluflag: int
+    plumod: int
+    modlink: int
+    pluactivestart: datetime
+    pluactiveend: datetime
+    plunamelang1: str
+    plukind: int
+    plumaxorder: int
+    islinkmenu: bool
+    plutypeemenu: int
+    pluopenday: bool
+    pluopensundaystart: datetime
+    pluopensundaystop: datetime
+    pluopenmondaystart: datetime
+    pluopenmondaystop: datetime
+    pluopentuesdaystart: datetime
+    pluopentuesdaystop: datetime
+    pluopenwednesdaystart: datetime
+    pluopenwednesdaystop: datetime
+    pluopenthursdaystart: datetime
+    pluopenthursdaystop: datetime
+    pluopenfridaystart: datetime
+    pluopenfridaystop: datetime
+    pluopensaturdaystart: datetime
+    pluopensaturdaystop: datetime
+    pluopenholidaystart: datetime
+    pluopenholidaystop: datetime
+    tenantid: int
 
 class PLU(BaseModel):
-	pluid: int
-	pluname: str 
-	plutext: str
+    pluid: int
+    pluname: str  
+    pluimage: str
+    plutext: str 
+    pluinputdate: datetime
+    plushow: bool
+    plunumber: str
+    plutype: int
+    departmentid: int
+    plugroup: int
+    plulevel: int
+    pluremarks: str
+    pluorder: int
+    pluflag: int
+    plumod: int
+    modlink: int
+    pluactivestart: datetime
+    pluactiveend: datetime
+    plunamelang1: str
+    plukind: int
+    plumaxorder: int
+    islinkmenu: bool
+    plutypeemenu: int
+    pluopenday: bool
+    pluopensundaystart: datetime
+    pluopensundaystop: datetime
+    pluopenmondaystart: datetime
+    pluopenmondaystop: datetime
+    pluopentuesdaystart: datetime
+    pluopentuesdaystop: datetime
+    pluopenwednesdaystart: datetime
+    pluopenwednesdaystop: datetime
+    pluopenthursdaystart: datetime
+    pluopenthursdaystop: datetime
+    pluopenfridaystart: datetime
+    pluopenfridaystop: datetime
+    pluopensaturdaystart: datetime
+    pluopensaturdaystop: datetime
+    pluopenholidaystart: datetime
+    pluopenholidaystop: datetime
+    tenantid: int
 
 # ======= FastAPI
-app = FastAPI(title = "REST API using FastAPI PostgreSQL Async EndPoints")
+app = FastAPI(title = "REST API - FastAPI PostgreSQL Async EndPoints")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
