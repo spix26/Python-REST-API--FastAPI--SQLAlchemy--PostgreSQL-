@@ -23,4 +23,9 @@ Auto Generate Documentation and Web Testing:
 `http://127.0.0.1:8000/docs`
 
 
-Ari Abimanyu
+
+
+
+
+Regards
+**Ari Abimanyu**
